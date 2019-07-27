@@ -4,19 +4,29 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_SIZE 3
-
-void set_com_data(int* computer);
-void player_data_input(int* player);
-void judge_result(int* computer, int* player, int* strike, int* ball);
+void set_com_data(int* computer, int max_num);
+void player_data_input(int* player, int max_num);
+void judge_result(int* computer, int* player, int* strike, int* ball, int max_num);
 
 int main()
 {
-	int computer[MAX_SIZE];
-	int player[MAX_SIZE];
-	int i, j, strike = 0, ball = 0, challenge_time = 0; // 도전 횟수를 저장할 변수
+	int* computer;
+	int* player;
+	int i, j, strike = 0, ball = 0, challenge_time = 0, max_num = 0; // challenge_time : 도전 횟수를 저장할 변수, max_num : 최대 몇 자리의 수까지 도전할 것인지를 결정하는 변수
 
-	set_com_data(computer);
+	printf("최대 몇 자리 수에 도전하시겠습니까? : ");
+	scanf_s("%d", &max_num);
+
+	computer = (int*)malloc(sizeof(int) * max_num);
+	player = (int*)malloc(sizeof(int) * max_num);
+
+	if (computer == NULL || player == NULL)
+	{
+		printf("메모리 할당에 실패했습니다. 프로그램을 종료합니다.\n");
+		return -1;
+	}
+
+	set_com_data(computer, max_num);
 
 	puts("Start Game!");
 	puts("number range : 0 ~ 9");
@@ -26,15 +36,15 @@ int main()
 		strike = 0;
 		ball = 0;
 
-		player_data_input(player);
+		player_data_input(player, max_num);
 
-		for (i = 0; i < MAX_SIZE; i++)
+		for (i = 0; i < max_num; i++)
 		{
 			if (player[i] < 0 || player[i] > 9) // 숫자 범위를 넘어섰는지 체크
 			{
 				printf("숫자 범위를 벗어났습니다. 다시 입력해주세요.\n");
 				printf("\n");
-				player_data_input(player);
+				player_data_input(player, max_num);
 				i = -1;
 				continue;
 			}
@@ -45,7 +55,7 @@ int main()
 				{
 					printf("입력된 숫자가 중복됩니다. 다시 입력해주세요.\n");
 					printf("\n");
-					player_data_input(player);
+					player_data_input(player, max_num);
 					i = -1;
 					break;
 				}
@@ -54,7 +64,7 @@ int main()
 
 		printf("\n");
 		printf("당신의 추리 : ");
-		for (i = 0; i < MAX_SIZE; i++)
+		for (i = 0; i < max_num; i++)
 		{
 			printf("%d ", player[i]);
 		}
@@ -62,10 +72,10 @@ int main()
 
 		challenge_time++;
 		printf("%d번째 도전 결과 : ", challenge_time);
-		judge_result(computer, player, &strike, &ball);
+		judge_result(computer, player, &strike, &ball, max_num);
 		printf("\n");
 
-		if (strike == 3)
+		if (strike == max_num)
 		{
 			puts("Game Over!");
 			break;
@@ -75,13 +85,13 @@ int main()
 	return 1;
 }
 
-void set_com_data(int* computer)
+void set_com_data(int* computer, int max_num)
 {
 	int i, j;
 
 	srand(time(NULL)); // 현재시간을 이용해서 씨드 설정
 
-	for (i = 0; i < MAX_SIZE; i++) // 컴퓨터가 무작위로 숫자를 설정한다.
+	for (i = 0; i < max_num; i++) // 컴퓨터가 무작위로 숫자를 설정한다.
 	{
 		int temp;
 		
@@ -96,31 +106,36 @@ void set_com_data(int* computer)
 				break;
 			}
 		}
-
 	}
+	
+	for (i = 0; i < max_num; i++)
+	{
+		printf("%d ", computer[i]);
+	}
+	puts("");
 }
 
-void player_data_input(int* player)
+void player_data_input(int* player, int max_num)
 {
 	int i;
 
-	printf("%d개의 숫자 선택 : ", MAX_SIZE);
+	printf("%d개의 숫자 선택 : ", max_num);
 
-	for (i = 0; i < MAX_SIZE; i++) // 입력
+	for (i = 0; i < max_num; i++) // 입력
 	{
 		scanf_s("%d", &player[i]);
 	}
 }
 
-void judge_result(int* computer, int* player, int* strike, int* ball)
+void judge_result(int* computer, int* player, int* strike, int* ball, int max_num)
 {
 	int i, j, check; // 변수 check는 player의 배열에서 하나의 정수를 빼내서 그 숫자가 위치까지 맞는지 확인하기 위해서 생성한 변수
 
-	for (i = 0; i < MAX_SIZE; i++)
+	for (i = 0; i < max_num; i++)
 	{
 		check = player[i];
 
-		for (j = 0; j < MAX_SIZE; j++)
+		for (j = 0; j < max_num; j++)
 		{
 			if (check == computer[j] && i == j)
 			{
@@ -134,12 +149,12 @@ void judge_result(int* computer, int* player, int* strike, int* ball)
 		}
 	}
 
-	if (*strike != 0 && *ball != 0)
+	if (*strike == 0 && *ball == 0)
 	{
-		printf("%d strike, %d ball!!\n", *strike, *ball);
+		printf("out!!\n");
 	}
 	else
 	{
-		printf("out!!\n");
+		printf("%d strike, %d ball!!\n", *strike, *ball);
 	}
 }
