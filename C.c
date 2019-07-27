@@ -23,7 +23,7 @@ int main()
 
 	if (computer == NULL || player == NULL)
 	{
-		printf("메모리 할당에 실패했습니다. 프로그램을 종료합니다.\n");
+		puts("메모리 할당에 실패했습니다. 프로그램을 종료합니다.");
 		return -1;
 	}
 
@@ -43,8 +43,7 @@ int main()
 		{
 			if (player[i] < 0 || player[i] > 9) // 숫자 범위를 넘어섰는지 체크
 			{
-				printf("숫자 범위를 벗어났습니다. 다시 입력해주세요.\n");
-				printf("\n");
+				puts("숫자 범위를 벗어났습니다. 다시 입력해주세요.\n");
 				player_data_input(player, max_num);
 				i = -1;
 				continue;
@@ -54,8 +53,7 @@ int main()
 			{
 				if (player[i] == player[j])
 				{
-					printf("입력된 숫자가 중복됩니다. 다시 입력해주세요.\n");
-					printf("\n");
+					puts("입력된 숫자가 중복됩니다. 다시 입력해주세요.\n");
 					player_data_input(player, max_num);
 					i = -1;
 					break;
@@ -108,12 +106,6 @@ void set_com_data(int* computer, int max_num)
 			}
 		}
 	}
-	
-	for (i = 0; i < max_num; i++)
-	{
-		printf("%d ", computer[i]);
-	}
-	puts("");
 }
 
 void player_data_input(int* player, int max_num)
