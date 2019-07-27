@@ -16,6 +16,7 @@ int main()
 
 	printf("최대 몇 자리 수에 도전하시겠습니까? : ");
 	scanf_s("%d", &max_num);
+	system("cls");
 
 	computer = (int*)malloc(sizeof(int) * max_num);
 	player = (int*)malloc(sizeof(int) * max_num);
