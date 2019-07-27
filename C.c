@@ -1,4 +1,4 @@
-// Visual Studio¿¡¼­ ÀÛ¼ºµÈ ÄÚµåÀÔ´Ï´Ù.
+// Visual Studioì—ì„œ ì‘ì„±ëœ ì½”ë“œì…ë‹ˆë‹¤.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,9 +12,9 @@ int main()
 {
 	int* computer;
 	int* player;
-	int i, j, strike = 0, ball = 0, challenge_time = 0, max_num = 0; // challenge_time : µµÀü È½¼ö¸¦ ÀúÀåÇÒ º¯¼ö, max_num : ÃÖ´ë ¸î ÀÚ¸®ÀÇ ¼ö±îÁö µµÀüÇÒ °ÍÀÎÁö¸¦ °áÁ¤ÇÏ´Â º¯¼ö
+	int i, j, strike = 0, ball = 0, challenge_time = 0, max_num = 0; // challenge_time : ë„ì „ íšŸìˆ˜ë¥¼ ì €ì¥í•  ë³€ìˆ˜, max_num : ìµœëŒ€ ëª‡ ìë¦¬ì˜ ìˆ˜ê¹Œì§€ ë„ì „í•  ê²ƒì¸ì§€ë¥¼ ê²°ì •í•˜ëŠ” ë³€ìˆ˜
 
-	printf("ÃÖ´ë ¸î ÀÚ¸® ¼ö¿¡ µµÀüÇÏ½Ã°Ú½À´Ï±î? : ");
+	printf("ìµœëŒ€ ëª‡ ìë¦¬ ìˆ˜ì— ë„ì „í•˜ì‹œê² ìŠµë‹ˆê¹Œ? : ");
 	scanf_s("%d", &max_num);
 	system("cls");
 
@@ -23,7 +23,7 @@ int main()
 
 	if (computer == NULL || player == NULL)
 	{
-		puts("¸Ş¸ğ¸® ÇÒ´ç¿¡ ½ÇÆĞÇß½À´Ï´Ù. ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
+		puts("ë©”ëª¨ë¦¬ í• ë‹¹ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 		return -1;
 	}
 
@@ -32,7 +32,7 @@ int main()
 	puts("Start Game!");
 	puts("number range : 0 ~ 9");
 
-	while (1) // ÇÃ·¹ÀÌ¾î°¡ 3strike¸¦ ÇÏ±â Àü±îÁö´Â °è¼Ó ¹İº¹µÇ¾î¾ß ÇÏ¹Ç·Î ¹«ÇÑ ¹İº¹ ¼³Á¤
+	while (1) // í”Œë ˆì´ì–´ê°€ ëª¨ë“  ìˆ˜ë¥¼ strikeë¥¼ í•˜ê¸° ì „ê¹Œì§€ëŠ” ê³„ì† ë°˜ë³µë˜ì–´ì•¼ í•˜ë¯€ë¡œ ë¬´í•œ ë°˜ë³µ ì„¤ì •
 	{
 		strike = 0;
 		ball = 0;
@@ -41,19 +41,19 @@ int main()
 
 		for (i = 0; i < max_num; i++)
 		{
-			if (player[i] < 0 || player[i] > 9) // ¼ıÀÚ ¹üÀ§¸¦ ³Ñ¾î¼¹´ÂÁö Ã¼Å©
+			if (player[i] < 0 || player[i] > 9) // ìˆ«ì ë²”ìœ„ë¥¼ ë„˜ì–´ì„°ëŠ”ì§€ ì²´í¬
 			{
-				puts("¼ıÀÚ ¹üÀ§¸¦ ¹ş¾î³µ½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+				puts("ìˆ«ì ë²”ìœ„ë¥¼ ë²—ì–´ë‚¬ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 				player_data_input(player, max_num);
 				i = -1;
 				continue;
 			}
 
-			for (j = 0; j < i; j++) // Áßº¹ Ã¼Å©
+			for (j = 0; j < i; j++) // ì¤‘ë³µ ì²´í¬
 			{
 				if (player[i] == player[j])
 				{
-					puts("ÀÔ·ÂµÈ ¼ıÀÚ°¡ Áßº¹µË´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+					puts("ì…ë ¥ëœ ìˆ«ìê°€ ì¤‘ë³µë©ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 					player_data_input(player, max_num);
 					i = -1;
 					break;
@@ -62,7 +62,7 @@ int main()
 		}
 
 		printf("\n");
-		printf("´ç½ÅÀÇ Ãß¸® : ");
+		printf("ë‹¹ì‹ ì˜ ì¶”ë¦¬ : ");
 		for (i = 0; i < max_num; i++)
 		{
 			printf("%d ", player[i]);
@@ -70,7 +70,7 @@ int main()
 		printf("\n");
 
 		challenge_time++;
-		printf("%d¹øÂ° µµÀü °á°ú : ", challenge_time);
+		printf("%dë²ˆì§¸ ë„ì „ ê²°ê³¼ : ", challenge_time);
 		judge_result(computer, player, &strike, &ball, max_num);
 		printf("\n");
 
@@ -88,9 +88,9 @@ void set_com_data(int* computer, int max_num)
 {
 	int i, j;
 
-	srand(time(NULL)); // ÇöÀç½Ã°£À» ÀÌ¿ëÇØ¼­ ¾¾µå ¼³Á¤
+	srand(time(NULL)); // í˜„ì¬ì‹œê°„ì„ ì´ìš©í•´ì„œ ì”¨ë“œ ì„¤ì •
 
-	for (i = 0; i < max_num; i++) // ÄÄÇ»ÅÍ°¡ ¹«ÀÛÀ§·Î ¼ıÀÚ¸¦ ¼³Á¤ÇÑ´Ù.
+	for (i = 0; i < max_num; i++) // ì»´í“¨í„°ê°€ ë¬´ì‘ìœ„ë¡œ ìˆ«ìë¥¼ ì„¤ì •í•œë‹¤.
 	{
 		int temp;
 		
@@ -112,9 +112,9 @@ void player_data_input(int* player, int max_num)
 {
 	int i;
 
-	printf("%d°³ÀÇ ¼ıÀÚ ¼±ÅÃ : ", max_num);
+	printf("%dê°œì˜ ìˆ«ì ì„ íƒ : ", max_num);
 
-	for (i = 0; i < max_num; i++) // ÀÔ·Â
+	for (i = 0; i < max_num; i++) // ì…ë ¥
 	{
 		scanf_s("%d", &player[i]);
 	}
@@ -122,7 +122,7 @@ void player_data_input(int* player, int max_num)
 
 void judge_result(int* computer, int* player, int* strike, int* ball, int max_num)
 {
-	int i, j, check; // º¯¼ö check´Â playerÀÇ ¹è¿­¿¡¼­ ÇÏ³ªÀÇ Á¤¼ö¸¦ »©³»¼­ ±× ¼ıÀÚ°¡ À§Ä¡±îÁö ¸Â´ÂÁö È®ÀÎÇÏ±â À§ÇØ¼­ »ı¼ºÇÑ º¯¼ö
+	int i, j, check; // ë³€ìˆ˜ checkëŠ” playerì˜ ë°°ì—´ì—ì„œ í•˜ë‚˜ì˜ ì •ìˆ˜ë¥¼ ë¹¼ë‚´ì„œ ê·¸ ìˆ«ìê°€ ìœ„ì¹˜ê¹Œì§€ ë§ëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•´ì„œ ìƒì„±í•œ ë³€ìˆ˜
 
 	for (i = 0; i < max_num; i++)
 	{
